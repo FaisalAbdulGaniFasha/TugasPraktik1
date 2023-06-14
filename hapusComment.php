@@ -1,0 +1,31 @@
+<?php
+
+require_once 'function.php';
+$id = $_GET["idCom"];
+
+
+
+if (hapusCom($id) > 0) {
+    echo "
+    <script>
+        alert('data  berhasil dihapus');
+        document.location.href = 'index.php';
+    </script>
+    ";
+} else {
+    echo "
+        <script>
+            alert('data gagal dihapus');
+            document.location.href = 'index.php';
+        </script>
+    ";
+}
+
+// function hapus(untuk menghapus data)
+function hapusCom($id)
+{
+    global $conn;
+    mysqli_query($conn, "DELETE FROM comments WHERE id = $id");
+
+    return mysqli_affected_rows($conn);
+}
